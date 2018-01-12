@@ -1,0 +1,157 @@
+README for the heat propagation project
+=======================================
+
+This directory contains various C files containing helper code for the
+heat propagation project.
+
+You can use this in either of two ways:
+
+- either by creating your own project tree and copying the individual
+  C sources over; or
+
+- reusing this tree as-is.
+
+We suggest that you use the latter approach if you are not comfortable
+writing Unix Makefiles. This tree uses GNU Automake which automates
+Makefile generation from simple definitions in ``Makefile.am``.
+
+About the C language level
+--------------------------
+
+You are allowed to, but not required to, make use of "new" language
+features from ISO C99 (those recognized by the compilers we have
+access to).
+
+This can be enabled for the GNU compiler with options ``-std=c99`` or
+``-std=gnu99``. These options are already enabled by default with the
+provided skeleton code. Of specific interest for this project are:
+
+- multi-dimensional array declarations of dynamic sizes;
+
+- the ``restrict`` keyword.
+
+About source code submissions
+-----------------------------
+
+Regardless of your choice to reuse the code in this directory or
+create your own project directory, your submissions are expected to
+comply to the following guidelines:
+
+- you should submit a compressed TAR archive, whose name contains your
+  student ID and which expands into a subdirectory whose name also
+  contains your student ID;
+
+- if your submitted tree contains a ``configure`` script, we will run
+  it without parameters before compiling the code;
+
+- your program(s) should compile with the command ``make``.
+
+If you use the proposed code skeleton, you can create a valid archive
+automatically with the command ``make distcheck
+distdir=heat-STUDENTID`` (replace "STUDENTID" by your student ID).
+
+here is an example sequence of shell commands which checks whether your
+submission complies to these guidelines::
+
+  set -e
+  ID=<yourstudentID>
+  tar -xzf *$ID*.tar.gz # or .tbz or .tgz or .t7z etc
+  cd *$ID*/
+  test -x ./configure && ./configure
+  make
+
+About input/output data files
+-----------------------------
+
+The proposed code makes use of the *portable greymap* file format from
+the Netpbm_ software suite. This is an image format which is also
+editable as plain text.
+
+.. _Netpbm: http://en.wikipedia.org/wiki/Netpbm
+
+You do not need the Netpbm programs for this project since many image
+viewers will recognize the image format anyways.
+
+We will provide a few data files. They can be automatically generated
+using the rules in ``data.mk``. You can use the same rules to generate
+similar images of different sizes. For example::
+
+   make gradient_500x100.pgm
+   make plasma_100x100.pgm
+   make areas_100x500.pgm
+
+You are also invited to create your own test files or "interesting
+patterns" as well.
+
+About reusing this tree
+-----------------------
+
+If you decide to reuse the provided tree as-is, you delegate to GNU
+Autoconf and GNU Automake the task of selecting compilers and
+authoring your ``Makefile``.
+
+GNU Automake should be smart enough to pick-up any changes to your
+files whenever you run the ``make`` command. If any issues arise,
+contact us for troubleshooting.
+
+Suggestions
+-----------
+
+- Always compile your code with compiler warnings enabled,
+  e.g. ``-Wall -W`` with GNU C. Note that potential uses of
+  unitialized variables are only detected by GCC when using
+  optimization level ``-O2``.
+
+- If you are using GNU Automake, you can produce a valid submission
+  archive automatically using the rule ``make distcheck``. You can
+  change the name of the directory and archive as follows::
+
+         make distcheck distdir=heat-XXXXX
+
+  (e.g. replace "XXXXX" with your student ID)
+
+- If your program outputs a series of images (e.g. ``img.XXX.pgm`` as
+  done by the code in ``img.c``), you can convert these images to a
+  colored GIF or MPEG animation using the following command::
+
+     convert <file list> +level-colors blue-red anim.gif
+
+  If you are reusing this directory as-is, you can also run ``make
+  anim.gif`` which has the same effect (rule in ``data.mk``).
+
+  .. note:: The ``convert`` command is provided by ImageMagick_
+     (version 6.2.4-1 or later for option ``+level-colors``).
+
+  .. _ImageMagick: http://www.imagemagick.org/
+
+- You can overload the C compile flags temporarily for the duration of
+  one build by using the following command::
+
+     make CFLAGS="<your flags here>"
+
+  To make the flags persist more::
+
+     ./configure CFLAGS="<your flags here>"
+
+  
+- Thanks to GNU Automake, you can separate the build process from the
+  source tree. This is done by creating an empty directory, changing
+  to this directory to make it current, and then running the
+  ``configure`` script from there. For example::
+
+     mkdir test-o2
+     cd test-o2
+     ../path/to/sources/configure CFLAGS=-O2
+     make
+
+  This is also useful to keep multiple builds of your programs in
+  different directories while keeping a single source tree, e.g. when
+  testing the effect of different compiler flags side by side.
+
+
+Auoreconf
+---------
+
+In order to prepare the build system run:
+- autoreconf -v -f -i
+
