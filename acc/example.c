@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <openacc.h>
-
+#include <sys/time.h>
 /* Addition function to offload to GPU */
 void vecadd(float *restrict x, float *a, float *b, int len, int repeat){
 

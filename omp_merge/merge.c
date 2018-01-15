@@ -9,7 +9,7 @@
 /* Ordering of the vector */
 typedef enum Ordering {ASCENDING, DESCENDING, RANDOM} Order;
 
-int debug = 0;
+int debug = 1;
 
 /* Sort vector v of l elements using mergesort */
 void msort(int *v, long l){
