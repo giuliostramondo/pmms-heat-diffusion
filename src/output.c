@@ -1,5 +1,5 @@
 #include "output.h"
-#include "config.h"
+//#include "config.h"
 #include <stdio.h>
 
 #define FPOPS_PER_POINT_PER_ITERATION (                 \
@@ -14,9 +14,9 @@ void report_results(const struct parameters *p, const struct results *r)
 {
     static volatile int init = 0;
     if (!init) {
-        printf("Output from %s-%s (%s):\n\n"
+        printf("Output:\n\n"
                "%13s %13s %13s %13s %13s %13s %13s\n",
-               PACKAGE_NAME, PACKAGE_VERSION, PACKAGE_BUGREPORT,
+               //PACKAGE_NAME, PACKAGE_VERSION, PACKAGE_BUGREPORT,
                "Iterations",
                "T(min)", "T(max)", "T(diff)", "T(avg)", "Time", "FLOP/s");
         init = 1;

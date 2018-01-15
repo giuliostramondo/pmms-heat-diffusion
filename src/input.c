@@ -1,6 +1,6 @@
 #include "input.h"
 #include "fail.h"
-#include "config.h"
+//#include "config.h"
 #include <getopt.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -30,9 +30,7 @@ static void usage(const char *pname)
            "  -p NUM     Number of threads to use (when applicable).\n"
            "  -r         Print a report every reduction cycle.\n"
            "  -h         Print this help.\n"
-           "\n" PACKAGE_NAME "-" PACKAGE_VERSION "\n"
-           "Contact: " PACKAGE_BUGREPORT "\n",
-           pname);
+           );
     exit(0);
 }
 
