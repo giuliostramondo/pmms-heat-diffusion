@@ -40,15 +40,23 @@ ASSIGNMENTS_OBJ=$(subst /,/obj/,$(patsubst %.c,%.o,$(ASSIGNMENTS_SRC)))
 CC=gcc
 #Specify the global compiler flags used for the framework and EVERY assignment
 CFLAGS=-I./include -std=c99
+LIBS=
 
 #Compiler flags used for the seq code
 CFLAGS_seq=-g3
+LIBS_seq=
+
 #Compiler flags used for the omp code
 CFLAGS_omp=-O2
+LIBS_omp=
 #Compiler flags used for the pth code
 CFLAGS_pth=-O2
+LIBS_pth=-lm -pthread 
 #Compiler flags used for the acc code
 CFLAGS_acc=-g3 -fopenacc
+LIBS_acc=
+
+
 
 define filter-assignment-obj 
 	$(filter $(1)/%,$(ASSIGNMENTS_OBJ))
@@ -60,26 +68,28 @@ all: $(TARGETS)
 
 
 omp-merge: omp_merge/merge.c
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@ $(LIBS)
 
 #This generates rules for each assignment
 .SECONDEXPANSION:
 $(filter heat-%,$(TARGETS)): heat-%:  $$(call filter-assignment-obj, %) $(OBJ) $(HEADERS)  	
 	@echo "Compiling $@ in $(patsubst heat-%,%,$@) which depends from $+ "
-	$(CC) $(CFLAGS) $(CFLAGS_$(patsubst heat-%,%,$@)) $(filter %.o,$+) -o $@	
+	$(CC) $(CFLAGS) $(CFLAGS_$(patsubst heat-%,%,$@)) $(filter %.o,$+) -o $@ $(LIBS) $(LIBS_$(patsubst heat-%,%,$@))
+
+
 
 #This generates rules for each object of an assignment 
 .SECONDEXPANSION:
 $(ASSIGNMENTS_OBJ): %.o :$$(subst /obj/,/,%.c) 
 	@echo "Compiling assignment $(patsubst %/,%, $(dir $<)) file $@:"
 	@if [ ! -d "$(dir $(<))obj" ]; then mkdir $(dir $(<))obj; fi
-	$(CC) $(CFLAGS) $(CFLAGS_$(patsubst %/,%, $(dir $<))) -c $< -o $@	
+	$(CC) $(CFLAGS) $(CFLAGS_$(patsubst %/,%, $(dir $<))) -c $< -o $@ $(LIBS) $(LIBS_$(patsubst %/,%, $(dir $<)))
 
 #Compiling framework objects and putting them in the obj folder
 obj/%.o: src/%.c $(HEADERS)
 	@echo "Compiling framework file $@: gcc -c $< -o $@"
 	@if [ ! -d "obj" ]; then mkdir obj; fi
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS)
 
 
 .PHONY: clean submission demo
@@ -87,7 +97,7 @@ obj/%.o: src/%.c $(HEADERS)
 demo: $(basename $(filter %.c,$(wildcard demo/*)) )
 
 $(basename $(filter %.c,$(wildcard demo/*)) ): $(filter-out obj/main.o, $(OBJ))
-	gcc $(CFLAGS) $@.c $(filter-out obj/main.o, $(OBJ)) -o $@
+	gcc $(CFLAGS) $@.c $(filter-out obj/main.o, $(OBJ)) -o $@ $(LIBS)
 
 submission:
 	$(eval BASEDIR := $(notdir $(shell pwd)))
