@@ -84,9 +84,9 @@ obj/%.o: src/%.c $(HEADERS)
 
 .PHONY: clean submission demo
 
-demo: $(basename $(wildcard demo/*)) 
+demo: $(basename $(filter %.c,$(wildcard demo/*)) )
 
-$(basename $(wildcard demo/*)): $(filter-out obj/main.o, $(OBJ))
+$(basename $(filter %.c,$(wildcard demo/*)) ): $(filter-out obj/main.o, $(OBJ))
 	gcc $(CFLAGS) $@.c $(filter-out obj/main.o, $(OBJ)) -o $@
 
 submission:
@@ -98,3 +98,4 @@ clean:
 	-rm -rf obj
 	-rm -rf $(addsuffix /obj,$(ASSIGNMENTS))
 	-rm -f $(TARGETS)
+	-rm -f demo/main_imgdemo    demo/main_inputdemo    demo/main_outputdemo 
