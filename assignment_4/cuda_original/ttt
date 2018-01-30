@@ -1,0 +1,2 @@
+gcc -std=gnu99 -DHAVE_CONFIG_H -I.   -I./../src  -g -O3 -Wall -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o `test -f './../src/main.c' || echo './'`./../src/main.c
+mv -f .deps/main.Tpo .deps/main.Po
