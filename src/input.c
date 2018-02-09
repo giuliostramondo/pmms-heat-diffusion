@@ -30,7 +30,7 @@ static void usage(const char *pname)
            "  -p NUM     Number of threads to use (when applicable).\n"
            "  -r         Print a report every reduction cycle.\n"
            "  -h         Print this help.\n"
-           );
+           ,pname);
     exit(0);
 }
 
