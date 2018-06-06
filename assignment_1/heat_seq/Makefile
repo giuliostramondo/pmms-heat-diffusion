@@ -1,5 +1,4 @@
-CURR_DIR=$(notdir $(basename $(shell pwd)))
-PRJ=$(CURR_DIR)
+PRJ=$(shell basename " $(shell pwd) " )
 SRC=$(wildcard *.c)
 OBJ=$(patsubst %.c,%.o,$(SRC))
 
@@ -19,7 +18,7 @@ $(PRJ): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ $(LIB)	
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ $(LIB)
 
 clean:
 	-rm -f $(OBJ) $(PRJ)
