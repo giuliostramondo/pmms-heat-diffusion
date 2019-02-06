@@ -117,7 +117,7 @@ void read_parameters(struct parameters* p, int argc, char **argv)
            "  -L %e # coolest temperature in input/output\n"
            "  -H %e # highest temperature in input/output\n"
            "  -p %zu # number of threads (if applicable)\n"
-           "  -r %d # print intermediate reports every reduction cycle\n",
+           "  -r %zu # print intermediate reports every reduction cycle\n",
            p->N, p->M, p->maxiter, p->period, p->threshold,
            conductivity_fname ? conductivity_fname : "(none)",
            tinit_fname ? tinit_fname : "(none)",

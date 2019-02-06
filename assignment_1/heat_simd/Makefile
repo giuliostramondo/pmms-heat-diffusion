@@ -1,6 +1,6 @@
 CURR_DIR=$(notdir $(basename $(shell pwd)))
 PRJ=$(CURR_DIR)
-SRC=$(wildcard *.c)
+SRC=$(filter-out $(wildcard ref*.c), $(wildcard *.c))
 OBJ=$(patsubst %.c,%.o,$(SRC))
 
 CC=gcc
