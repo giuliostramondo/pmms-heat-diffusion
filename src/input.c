@@ -38,7 +38,7 @@ static void readpgm_float(const char *fname,
                           size_t height, size_t width, double *data,
                           double dmin, double dmax)
 {
-    char format[2];
+    char format[3];
     FILE *f;
     unsigned imgw, imgh, maxv, v;
     size_t i;
@@ -85,10 +85,10 @@ void read_parameters(struct parameters* p, int argc, char **argv)
     p->io_tmax = 100.0;
     p->nthreads = 1;
     p->printreports = 0;
-    conductivity_fname = "pattern_100x150.pgm";
-    tinit_fname = "pattern_100x150.pgm";
+    conductivity_fname = "../../images/pat1_100x150.pgm";
+    tinit_fname = "../../images/pat1_100x150.pgm";
 
-    while ((ch = getopt(argc, argv, "c:e:hH:i:k:L:m:M:n:N:p:t:r")) != -1)
+    while ((ch = getopt(argc, argv, "c:e:hH:i:k:L:m:M:n:N:p:t:r:")) != -1)
     {
         switch(ch) {
         case 'c': conductivity_fname = optarg; break;
