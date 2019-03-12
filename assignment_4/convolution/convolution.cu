@@ -28,16 +28,17 @@ void convolutionSeq(float *output, float *input, float *filter) {
 
     for (int y=0; y < image_height; y++) {
         for (int x=0; x < image_width; x++) { 
-
+	    output[y*image_width+x]=0;
             //for each filter weight
             for (int i=0; i < filter_height; i++) {
                 for (int j=0; j < filter_width; j++) {
                     output[y*image_width+x] += input[(y+i)*input_width+x+j] * filter[i*filter_width+j];
                 }
             }
-
+	    output[y*image_width+x] /= 35;
         }
     }
+  
   sequentialTime.stop(); 
   cout << "convolution (sequential): \t\t" << sequentialTime << endl;
 
