@@ -15,6 +15,7 @@ The assignments: heat dissipation (assignment1-4), mergesort(part of assignment 
 
 ## Measure time 
 You'll have to measure time. If not predefined in the file please use clock_gettime(CLOCK_MONOTONIC ...) to measure the time. For explanation see here: 
+
     - https://www.cs.rutgers.edu/~pxk/416/notes/c-tutorials/gettime.html
     - https://linux.die.net/man/3/clock_gettime
     - https://blog.habets.se/2010/09/gettimeofday-should-never-be-used-to-measure-time.html
