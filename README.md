@@ -77,7 +77,7 @@ preserve -llist
 - **BE AWARE: 15 minutes is the maximum time slot you should reserve!**
 - **In the output of your command you will see your reservation number**
 ```
-preserve -np 1 -native ’-C cpunode’ -t 15:00
+preserve -np 1 -native '-C cpunode' -t 15:00
 ```
 
 ### Run code on your reserved node
