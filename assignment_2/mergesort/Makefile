@@ -1,25 +1,14 @@
-CURR_DIR=$(notdir $(basename $(shell pwd)))
-PRJ=$(CURR_DIR)
-SRC=$(filter-out $(wildcard ref*.c), $(wildcard *.c))
-OBJ=$(patsubst %.c,%.o,$(SRC))
+all: $(filter-out Makefile,$(wildcard *))
 
-CC=gcc
-INCLUDES=-I../../include
-ifndef DEBUG
-CFLAGS=-O2 -std=gnu99
-LIB=
-else
-CFLAGS=-O0 -g3 -std=gnu99
-LIB=
-endif
+.PHONY: $(filter-out Makefile,$(wildcard *)) clean $(addprefix clean,$(filter-out Makefile,$(wildcard *)))
 
-all: $(PRJ)
+$(filter-out Makefile,$(wildcard *)):
+	$(MAKE) -C $@
 
-$(PRJ): $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $@
+clean: $(addprefix clean_,$(filter-out Makefile,$(wildcard *)))
+	@echo $+
+	
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ $(LIB)	
-
-clean:
-	-rm -f $(OBJ) $(PRJ)
+$(addprefix clean_,$(filter-out Makefile,$(wildcard *))):
+	@echo clean $@
+	$(MAKE) -C $(subst clean_,,$@) clean
