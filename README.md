@@ -24,6 +24,11 @@ The outputs were generated with the following command: **./heat_seq -n 150 -m 10
 5) Only one person in the group needs to upload the assignment! 
 6) Do **not** include the pdf in the tar! 
  
+## Resources and Tools:
+
+### Profiling:
+A highly recommended tool is Intel Vtune. 
+Intel: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/vtune-profiler.html
 
 ## Heat Dissipation assignments: 
 Have a look at the project description on Canvas (section 3).
@@ -33,6 +38,11 @@ Have a look at the project description on Canvas (section 3).
 Superficially for all heat dissipation parts we use: **./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100** to check for correctness.
 To measure the GFLOPs we will use additional tests for different image sizes etc. 
 
+There are two flags (-k and -r) that seem similar but are a bit confusing. 
+The -k sets how often a report is filled (i.e. how often it calculates max, min, average values etc).
+The -r flag purely sets IF that result should be printed or not, so there could be a case that you compute the values for the report but dont print it.
+In most cases if you compute the values for the report you also want to print the report. 
+
 ## Other Assignments
 Mergesort(part of assignment 2) and vecsort(part of assignment 2) all have command line options.
 
@@ -41,7 +51,7 @@ Mergesort(part of assignment 2) and vecsort(part of assignment 2) all have comma
 3) Assignment 3 - Histogram Testing: TBD
 4) Assignment 3 - Pipesort Testing: TBD
 5) Assignment 4 - Convolution Testing: TBD
-6) Assignment 2 - Histogram Testing: TBD
+6) Assignment 4 - Histogram Testing: TBD
 
 
 

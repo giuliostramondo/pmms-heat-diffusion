@@ -1,4 +1,4 @@
-#include <sys/time.h>
+#include <time.h>
 #include <math.h>
 #include <stdlib.h>
 
@@ -12,14 +12,14 @@ void do_compute(const struct parameters* p, struct results *r)
 {
     /* ... */
 
-    struct timeval before, after;
-    gettimeofday(&before, NULL);
+    struct timespec before, after;
+    clock_gettime(CLOCK_MONOTONIC, &before);
 
     /* ... */
 
-    gettimeofday(&after, NULL);
-    r->time = (double)(after.tv_sec - before.tv_sec) + 
-        (double)(after.tv_usec - before.tv_usec) / 1e6;
+    clock_gettime(CLOCK_MONOTONIC, &after);
+    r->time = (double)(after.tv_sec - before.tv_sec) +
+              (double)(after.tv_nsec - before.tv_nsec) / 1e9;
 
     /* ... */
 }
