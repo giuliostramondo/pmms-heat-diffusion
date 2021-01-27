@@ -26,9 +26,12 @@ The outputs were generated with the following command: **./heat_seq -n 150 -m 10
  
 ## Resources and Tools:
 
-### Profiling:
-A highly recommended tool is Intel Vtune. 
+A highly recommended tool for profiling your code is Intel Vtune. 
 Intel: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/vtune-profiler.html
+
+Some information on vectorization: https://software.intel.com/content/www/us/en/develop/articles/recognizing-and-measuring-vectorization-performance.html
+
+Additionally, the Godbolt Compiler Explorer is very interesting and useful. https://godbolt.org/
 
 ## Heat Dissipation assignments: 
 Have a look at the project description on Canvas (section 3).
@@ -42,6 +45,8 @@ There are two flags (-k and -r) that seem similar but are a bit confusing.
 The -k sets how often a report is filled (i.e. how often it calculates max, min, average values etc).
 The -r flag purely sets IF that result should be printed or not, so there could be a case that you compute the values for the report but dont print it.
 In most cases if you compute the values for the report you also want to print the report. 
+
+For assignments 2 and 3 make sure that you use the -p flag to set the number of threads. Otherwise we will test your code with a single thread. 
 
 ## Other Assignments
 Mergesort(part of assignment 2) and vecsort(part of assignment 2) all have command line options.
