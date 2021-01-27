@@ -1,17 +1,49 @@
-# pmms-heat-diffusion
-Programming multicore manycore systems, heat diffusion lab code.
+# UvA PMMS Course - Assignments 
+This repo contains the boilerplate code for the course "Programming multicore manycore systems".
+The course consists of 4 assignments. All assignments contain a part where students work on a heat dissipation simulation.
+Additionally, assignments 2 to 4 also contain additional parts. 
 
 ## Structure:
+The structure of this repo is as follows:
 1) One folder per assignment, with subfolders for each sub-assignment. 
 2) There is a bit of boilerplate code for each assignment and a make file. 
+3) The *include* folder contains boilerplate headers for the heat dissipation simulation.
+4) The *src* folder contains boilerplate code for the heat dissipation simulation.
+5) The *images* folder contains input images for the heat dissipation simulation.
+    - In the images folder you can also find a makefile that can generate new images e.g. "make areas_500x500.pgm"
+6) You can find reference output for Heat Dissipation in */heat_dissipation_reference_output/*. 
+The outputs were generated with the following command: **./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100**
+7) The *Latex_template* folder contains the latex template that we want you to use. The page limit is 10 pages. If you have too much information you can put it into an appendix, which we might or might not read.
+
+## Submission
+**How to submit your assignment on canvas**
+1) Enter the correct information in the main Makefile (group id, student ids).
+2) Run "make submission_%" where % is the assignment number. This will generate a tar thats named in the following way "heat_assignment_%_group_HERE_GROUP_ID_HERE_ID_OF_THE_STUDENT_HERE_ID_OF_THE_STUDENT.tar.gz"
+3) Upload the tar to canvas. 
+4) Name the PDF in the same way (i.e. heat_assignment_%_group_HERE_GROUP_ID_HERE_ID_OF_THE_STUDENT_HERE_ID_OF_THE_STUDENT.pdf). And also upload it on canvas. 
+5) Only one person in the group needs to upload the assignment! 
+6) Do **not** include the pdf in the tar! 
+ 
 
 ## Heat Dissipation assignments: 
-1) Have a look at the project description on Canvas (section 3). 
-2) You can find input images for the heat dissipation assignments in the /images/ folder. 
-    - In the images folder you can also find a makefile that can generate new images e.g. "make areas_500x500.pgm"
+Have a look at the project description on Canvas (section 3).
 
-## Command Line Options
-The assignments: heat dissipation (assignment1-4), mergesort(part of assignment 2) and vecsort(part of assignment 2) all have command line options. You are welcome to add your own options but do not change the options that already exist. We use these for testing your code. 
+### Command Line Option
+ You are welcome to add your own options but do not change the options that already exist. We use these for testing your code. 
+Superficially for all heat dissipation parts we use: **./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100** to check for correctness.
+To measure the GFLOPs we will use additional tests for different image sizes etc. 
+
+## Other Assignments
+Mergesort(part of assignment 2) and vecsort(part of assignment 2) all have command line options.
+
+1) Assignment 2 - Mergesort Testing: TBD
+2) Assignment 2 - Vecsort Testing: TBD
+3) Assignment 3 - Histogram Testing: TBD
+4) Assignment 3 - Pipesort Testing: TBD
+5) Assignment 4 - Convolution Testing: TBD
+6) Assignment 2 - Histogram Testing: TBD
+
+
 
 ## Measure time 
 You'll have to measure time. If not predefined in the file please use clock_gettime(CLOCK_MONOTONIC ...) to measure the time. For explanation see here: 
