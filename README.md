@@ -50,17 +50,10 @@ For assignments 2 and 3 make sure that you use the `-p` flag to set the number o
 ## Assignment 2 - [Mergesort and Vecsort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_2/README.md)
 
 
-## Assignment 3 - Histogram and Pipesort
-
-3) Assignment 3 - Histogram Testing: TODO
-4) Assignment 3 - Pipesort Testing: TODO
-
-## Assignment 4 - Convolution and Histogram
-
-5) Assignment 4 - Convolution Testing: TODO
-6) Assignment 4 - Histogram Testing: TODO
+## Assignment 3 - [Histogram and Pipesort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_3/README.md)
 
 
+## Assignment 4 - [Convolution and Histogram](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_4/README.md)
 
 ## Measure time 
 You'll have to measure time. If not predefined in the file please use clock_gettime(CLOCK_MONOTONIC ...) to measure the time. For explanation see here: 
