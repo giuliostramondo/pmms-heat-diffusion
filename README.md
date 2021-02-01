@@ -53,17 +53,17 @@ You'll have to measure time. If not predefined in the file please use clock_gett
 - https://linux.die.net/man/3/clock_gettime
 - https://blog.habets.se/2010/09/gettimeofday-should-never-be-used-to-measure-time.html
 
-## Assignment 2 - [Mergesort and Vecsort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_2/README.md)
+# Assignment 2 - [Mergesort and Vecsort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_2/README.md)
 
 
-## Assignment 3 - [Histogram and Pipesort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_3/README.md)
+# Assignment 3 - [Histogram and Pipesort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_3/README.md)
 
 
-## Assignment 4 - [Convolution and Histogram](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_4/README.md)
+# Assignment 4 - [Convolution and Histogram](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_4/README.md)
 
 
 
-# DAS-5 Usage
+# DAS-5 Cheat Sheet
 - In the first LC (02-03-2020) you will be assigned account names for DAS-5, a computing cluster that you will be expected to run some experiments on. 
 - DAS5 uses a scheduler called SLURM, the basic procedure to use it is first reserving a node (or a number of them) and then running your script on that node.
 - You are recommended to use the VU node of DAS-5 (fs0.das5.cs.vu.nl) 
