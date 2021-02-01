@@ -12,8 +12,8 @@ The structure of this repo is as follows:
 5) The *images* folder contains input images for the heat dissipation simulation.
     - In the images folder you can also find a makefile that can generate new images e.g. "make areas_500x500.pgm"
 6) You can find reference output for Heat Dissipation in */heat_dissipation_reference_output/*. 
-The outputs were generated with the following command: **./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100**
-7) The *Latex_template* folder contains the latex template that we want you to use. The page limit is 10 pages. If you have too much information you can put it into an appendix, which we might or might not read.
+The outputs were generated with the following command: `./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100`
+7) The **Latex_template** folder contains the latex template that we want you to use. The page limit is 10 pages. If you have too much information you can put it into an appendix, which we might or might not read.
 
 ## Submission
 **How to submit your assignment on canvas**
@@ -26,48 +26,49 @@ The outputs were generated with the following command: **./heat_seq -n 150 -m 10
  
 ## Resources and Tools:
 
-A highly recommended tool for profiling your code is Intel Vtune. 
-Intel: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/vtune-profiler.html
+- A highly recommended tool for profiling your code is [Intel Vtune](https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/vtune-profiler.html)
 
-Some information on vectorization: https://software.intel.com/content/www/us/en/develop/articles/recognizing-and-measuring-vectorization-performance.html
+- Some information on [vectorization](https://software.intel.com/content/www/us/en/develop/articles/recognizing-and-measuring-vectorization-performance.html)
 
-Additionally, the Godbolt Compiler Explorer is very interesting and useful. https://godbolt.org/
+- Additionally, the [Godbolt Compiler Explorer](https://godbolt.org/) is very interesting and useful. 
 
 ## Heat Dissipation assignments: 
 Have a look at the project description on Canvas (section 3).
 
 ### Command Line Option
  You are welcome to add your own options but do not change the options that already exist. We use these for testing your code. 
-Superficially for all heat dissipation parts we use: **./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100** to check for correctness.
+Superficially for all heat dissipation parts we use: `./heat_seq -n 150 -m 100 -i 42 -e 0.0001 -c ../../images/pat1_100x150.pgm -t ../../images/pat1_100x150.pgm -r 1 -k 10 -L 0 -H 100` to check for correctness.
 To measure the GFLOPs we will use additional tests for different image sizes etc. 
 
-There are two flags (-k and -r) that seem similar but are a bit confusing. 
-The -k sets how often a report is filled (i.e. how often it calculates max, min, average values etc).
-The -r flag purely sets IF that result should be printed or not, so there could be a case that you compute the values for the report but dont print it.
-In most cases if you compute the values for the report you also want to print the report. 
+- There are two flags (`-k` and `-r`) that seem similar but are a bit confusing. 
+- `-k` sets how often a report is filled (i.e. how often it calculates max, min, average values etc).
+- `-r` flag purely sets IF that result should be printed or not, so there could be a case that you compute the values for the report but dont print it.
+- In most cases if you compute the values for the report you also want to print the report. 
 
-For assignments 2 and 3 make sure that you use the -p flag to set the number of threads. Otherwise we will test your code with a single thread. 
+For assignments 2 and 3 make sure that you use the `-p` flag to set the number of threads. Otherwise we will test your code with a single thread. 
 
 ## Assignment 2 - Mergesort and Vecsort
-You will probably implement multiple versions of mergesort and vecort. At least one sequential and one parallel version. 
-Please make sure that each version is in its own subdirectory for the right sub-assignment (i.e. if you have a parallel implementation of mergesort called "parallel_a" it should be in: *assignment_2/mergesort/parallel_a/*).
-The executable needs to have the same name as the version folder name, i.e. for the parallel mergesort version please make sure the executable is called "parallel_a".
-Make a new subfolder for each version you want to try. All versions should be based on the same boilerplate code.  
-If one version does not result in the correct results do **NOT** include it in your submission!!!
+- You will probably implement multiple versions of mergesort and vecort. At least one sequential and one parallel version. 
+- Please make sure that each version is in its own subdirectory for the right sub-assignment (i.e. if you have a parallel implementation of mergesort called "parallel_a" it should be in: **assignment_2/mergesort/parallel_a/**).
+- The executable needs to have the same name as the version folder name, i.e. for the parallel mergesort version please make sure the executable is called "parallel_a".
+- Make a new subfolder for each version you want to try. All versions should be based on the same boilerplate code.  
+- If one version does not result in the correct results do **NOT** include it in your submission!!!
  
 Make sure there are no spaces in the paths (i.e. I **don't** want to see: assignment_2/mergesort/ final final final version that you need to test/)!
 
 Mergesort and vecsort have almost the same CLI. 
-In mergesort you have to sort one vector of length *-l*. There are a total of 7 flags. 
-The first three *adr* determine if the numbers in the vector are ascending, descending or random.
-Next *l* determines the length of the vector. *g* is the debug flag, i.e. if debug then print the vector before and after sorting.
-*s* sets the seed for the random number generator. *p* should set the number of threads. 
+- In mergesort you have to sort one vector of length `-l`. There are a total of 7 flags. 
+- The first three `adr` determine if the numbers in the vector are ascending, descending or random.
+- Next, `l` determines the length of the vector. `g` is the debug flag, i.e. if debug then print the vector before and after sorting.
+- `s` sets the seed for the random number generator. 
+- `p` should set the number of threads. 
 
-In vecsort you have to sort *-l* number of vectors with random length. 
-*l* sets the number of vectors to be sorted (i.e. outer vector length). The lengths of the *inner_vectors* has to be different for each inner vector.
-*adr* sets how the numbers of the **inner_vectors** is generated. *n* sets the minimum size of each inner vector. *x* sets the maximum size of each inner vector. 
-The other flags are the same.  
-You are welcome to change the vector of vector implementation. The main point is that your code still produces the same output. 
+- In vecsort you have to sort `-l` number of vectors with random length. 
+- `l` sets the number of vectors to be sorted (i.e. outer vector length). The lengths of the **inner_vectors** has to be different for each inner vector.
+- `adr` sets how the numbers of the **inner_vectors** is generated. 
+- `n` sets the minimum size of each inner vector. 
+- `x` sets the maximum size of each inner vector. 
+The other flags are the same.  You are welcome to change the vector of vector implementation. The main point is that your code still produces the same output. 
  
 You may add additional commands but do not change the current options.
 We will use the following to test the correctness of **all** your versions. 
