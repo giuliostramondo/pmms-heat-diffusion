@@ -301,11 +301,9 @@
   \global\let\@maketitle\relax
   \global\let\@thanks\@empty
   \global\let\@author\@empty
-  \global\let\@date\@empty
   \global\let\@title\@empty
   \global\let\title\relax
   \global\let\author\relax
-  \global\let\date\relax
   \global\let\and\relax
 }
 \newwrite\tocfile
@@ -318,8 +316,9 @@
   %%\let \footnote \thanks
   \parindent\z@ \raggedright
   \if!\@title!\def\@title{\textcolor{red}{Author: Please fill in a title}}\fi
-    {\LARGE\sffamily\bfseries\mathversion{bold}\@title \par}%
+    {\centering \LARGE\sffamily\bfseries\mathversion{bold}\@title \par}%
     \vskip 1em
+    {\centering \large\bfseries\mathversion{bold}\@date \par}%
     \ifx\@author\orig@author
       \textcolor{red}{Author: Please provide author information}%
     \else

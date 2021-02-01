@@ -1,8 +1,6 @@
 \documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipics-v2019}
 % *** CITATION PACKAGES ***
-\bibliographystyle{plainurl}% the mandatory bibstyle
 
-\usepackage{cite}
 % *** grapics ***
 %\usepackage[pdftex]{graphicx}
 % declare the path(s) where your graphic files are
@@ -19,12 +17,10 @@
 
 
 % *** SPECIALIZED LIST PACKAGES ***
-%
-%\usepackage{algorithmic}
-%\usepackage[inline]{enumitem}
+\usepackage{algorithmic}
+\usepackage[inline]{enumitem}
 
 % *** ALIGNMENT PACKAGES ***
-%
 \usepackage{array}
 \usepackage{makecell}
 
@@ -35,14 +31,16 @@
 
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
-%
 \usepackage{url, xcolor}
 \usepackage{lipsum} 
 
 
-%\begin{document}
-	\title{PMMS 2020: Assignment X}
-	
+% *** CUSTOM COMMANDS ***
+\newcommand{\group}[1]{{ \author{$\quad$} {\hspace*{\fill} \bfseries \Large Group #1 \hspace*{\fill} } {$\quad$} {} {} }}
+
+	\title{PMMS 2021: Assignment XX }
+
+	\group{YY}
 	\author{STUDENT NAME}{STUDENT NUMBER}{EMAIL ADDRESS}{}{}
 	\author{STUDENT NAME}{STUDENT NUMBER}{EMAIL ADDRESS}{}{}
 	
@@ -53,17 +51,48 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{document}
-	% make the title area
 	\maketitle
 	
 
 
 	
 	\section{Introduction}
-	\lipsum[1-20] \cite{odroid}
-	
-	
+		Briefly summarize the assignment as an introduction. \textit{Note:} Although defining a research question is a major part of a research report, this is less relevant for PMMS assignments. Thus, we recommend not to waste too much time to rephrase the assignment in all details, as the research goal/objective is clearly stated in the assignment itself \footnote{In other words, we consider the general research questions for each of the three assignments to be on the lines of "How can we design and implement $<$insert application$>$ using $<$programming model$>$, and what is the performance we observe?". Feel free to paraphrase these "template questions" in your report.}. Note that it is likely that you will need to have one research question per assignment.
+
+	\subsection{Research questions}
+		We recommend that you use \texttt{subsection} and \texttt{subsubsection} environments to format your work in a considered manner.  
+
+	\subsubsection{Citation}
+		This is what a citation looks like~\cite{temp}.
 		
-	\bibliography{bib}
+	\section{Design and methodology}
+		Then, describe your solution \textit{design} at a high level of abstraction. Please describe \textit{how} you have parallelized the algorithm, and, when needed, \textit{why} you selected certain solutions when you had more options. Make sure that anything you find remarkable or super smart about your solution is elaborated on here (that is, feel free to brag about interesting ideas and/or solutions).
+	
+	\section{Implementation}
+		Next, talk about your solution's \textit{implementation}: \textit{how} you have implemented your parallel algorithm using specific constructs, and, when needed, \textit{why} you selected certain constructs when you had more options. Here it is recommended to support the explanations with code snippets. In other words, it is really not a good idea to copy the whole program code into the report, but it is often relevant and interesting to use pseudocode to highlight the core of the solution to the given problem, or specific implementation details that you find interesting to talk about. Please make sure you clearly state where in the code archive (i.e., which file) the snippet originates from.
+
+	\subsection{Limitations and problems}
+		If you think your solution is not quite the best thing since sliced bread, also discuss that. Explain potential limitations and failures - in the design and/or implementation - and explain why you could not solve them (e.g. submission deadline was 5 minutes ahead when you figured it out); ideally, please sketch out what you think would be a way forward towards solving those limitations. This can be the basis for a good report, even if the programming exercise did not work out that well for you this time around.
+		
+	\section{Experiments and results}
+		Finally, assignments ask you to run certain experiments. Reporting on the experiments results \textit{and analysing them} are critical parts of your report. For every experiment, we recommend that you provide \textit{a description of the goal of the experiment, a hypothesis (usually strongly correlated with the goal), the results of the empirical tests, and how they match or not your hypothesis}. Whenever possible, please present the results in a graphical way.
+	
+	For example, think of documenting an experiment as follows: "We run tests with our application on  1,2,...,32 threads to see the impact the number of threads has on performance. We report performance as speed-up over the  sequential case, and we expect the speed-up to ... as we add more threads. The results are presented in figure ...  We observe that ... which confirms/infirms/... our hypothesis. However, we also notice that ... " 
+
+	Please note that we strongly recommend you present your experiments and results together - i.e., each experiment setup followed by its own results and analysis. This is the common practice in parallel processing, and it makes it easier to follow your analysis. Also note that explanations and analysis are highly appreciated. For example, explain why does code A perform better than code B, or why does the speed-up for code A increase linearly and for code B it does not increase at all, or why using more threads shows lower efficiency. All these are interesting and relevant questions, and give you excellent opportunities for you to demonstrate your knowledge.
+
+	\subsection{Additional research}
+		\textit{Important:} If you have ideas of other relevant experiments, that can showcase specific parts or features of your solution, please feel free to run those as well,and analyse their results - these are all examples of extra research.
+
+	\section{Conclusion}
+		Finally, please conclude your report with a short conclusion section, where you reflect briefly on what you have learned and what were the challenges you encountered, focused, as much as possible, on those aspects relevant to parallel algorithm design, implementation, and empirical analysis.  
+
+	\section*{Appendices}
+		We will not read reports longer than 10 pages (excluding appendices and bibliography). If you have additional results, information, proofs, etc please add them as appendices.
+	
+	{\small
+	\bibliographystyle{plainurl}
+	\bibliography{references.bib}
+	}
 	
 \end{document}
