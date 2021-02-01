@@ -47,7 +47,8 @@ To measure the GFLOPs we will use additional tests for different image sizes etc
 
 For assignments 2 and 3 make sure that you use the `-p` flag to set the number of threads. Otherwise we will test your code with a single thread. 
 
-## Assignment 2 - [Mergesort and Vecsort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/assignment-specific-readmes/assignment_1/README.md)
+## Assignment 2 - [Mergesort and Vecsort](https://github.com/juliusroeder/pmms-heat-diffusion/blob/master/assignment_2/README.md)
+
 
 ## Assignment 3 - Histogram and Pipesort
 
