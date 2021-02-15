@@ -118,7 +118,7 @@ int main(int argc, char **argv) {
                 break;
             case DESCENDING:
                 for (long j = 0; j < length_inner; j++) {
-                    vector_vectors[i][j] = (int) (length_inner - i);
+                    vector_vectors[i][j] = (int) (length_inner - j);
                 }
                 break;
             case RANDOM:
