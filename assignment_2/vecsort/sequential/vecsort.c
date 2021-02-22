@@ -20,7 +20,7 @@ void print_v(int **vector_vectors, int *vector_lengths, long length_outer) {
     printf("\n");
     for(long i = 0; i < length_outer; i++) {
         for (int j = 0; j < vector_lengths[i]; j++){
-            if(i != 0 && (i % 10 == 0)) {
+            if(j != 0 && (j % 10 == 0)) {
                 printf("\n");
             }
             printf("%d ", vector_vectors[i][j]);

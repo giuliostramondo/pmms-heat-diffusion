@@ -24,10 +24,14 @@ The other flags are the same.  You are welcome to change the vector of vector im
 You may add additional commands but do not change the current options.
 We will use the following to test the correctness of **all** your versions. 
 
- 1) Assignment 2 - Mergesort Testing: ** -d -l 100 -g **
- 2) Assignment 2 - Vecsort Testing: ** -d -l 100 -g -n 10 -x 100 **
+ 1) Assignment 2 - Mergesort Testing: ** -r -l 5000 -p 2 -s 42 -g **
+ 2) Assignment 2 - Vecsort Testing: ** -r -l 10 -n 10 -x 1000 -s 42 -g -p 2 **
 So it should print the vector first unsorted and then sorted. 
 And between the two is the runtime of the sorting. 
+
+For performance we will use:
+  1) Mergesort Testing: ** -r -l 50000 -p 16 -s 42 **
+  2) Vecsort Testing: ** -r -l 1000 -n 10 -x 2000 -s 42 -p 16 **
 
 For the speed we will use the *-p* flag to set the number of threads for the testing. 
 So make sure that it is used to set the number of threads!
