@@ -1,4 +1,10 @@
+#include <time.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <getopt.h>
 #include <stdio.h>
+#include <ctype.h>
+#include <errno.h>
 
 
 int main(int argc, char *argv[]){
@@ -6,7 +12,10 @@ int main(int argc, char *argv[]){
     int seed = 42;
     long length = 1e4;
 
-    struct timespec before, after;
+    struct timespec before;
+    struct timespec  after;
+
+
 
     /* Read command-line options. */
     while((c = getopt(argc, argv, "l:s:")) != -1) {
