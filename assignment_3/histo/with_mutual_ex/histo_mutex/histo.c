@@ -88,23 +88,26 @@ int main(int argc, char *argv[]){
 
     int num_rows = 150;
     int num_cols = 100;
+    int num_threads = 1;
 
     struct timespec before, after;
 
     int * histo = (int *) calloc(256, sizeof(int));
 
     /* Read command-line options. */
-    while((c = getopt(argc, argv, "s:ip:n:m:g")) != -1) {
+    while((c = getopt(argc, argv, "s:i:rp:n:m:g")) != -1) {
         switch(c) {
             case 's':
                 seed = atoi(optarg);
                 break;
-            case 'p':
+            case 'i':
             	image_path = optarg;
             	break;
-            case 'i':
+            case 'r':
             	gen_image = 1;
             	break;
+            case 'p':
+                num_threads = atoi(optarg);
             case 'n':
             	num_rows = strtol(optarg, 0, 10);
             	break;

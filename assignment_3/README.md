@@ -3,9 +3,10 @@
 The CLI of the heat dissipation part of the assignment is the same as for assignment 1 & 2. 
 
 The CLI for the histogram part is as follows:
- - **-s** sets the seed
- - **-p** image path
- - **-i** if set then generate a random image
+ - **-s** sets the seed (default 42)
+ - **-i** image path
+ - **-r** if set then generate a random image (default False)
+ - **-p** sets the number of threads used (default 1)
  - **-n** number of rows of the image
  - **-m** number of columns of the image
  - **-g** debug (print historgram)
@@ -21,10 +22,10 @@ The CLI for the pipesort is as follows:
 1) Assignment 3 - Histogram Testing: TODO
 
     For correctness:
-        "- p ../../../images/pat1_100x150.pgm -n 150 -m 100 -g"
+        "- i ../../../images/pat1_100x150.pgm -n 150 -m 100 -g -p 2"
         
     For performance:
-        "- p ../../../images/pat1_1000x1000.pgm -n 5000 -m 5000"
+        "- i ../../../images/pat1_1000x1000.pgm -n 5000 -m 5000 -p 16"
 
 2) Assignment 3 - Pipesort Testing:
 
