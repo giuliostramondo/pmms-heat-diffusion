@@ -25,7 +25,7 @@ The CLI for the pipesort is as follows:
         "- i ../../../images/pat1_100x150.pgm -n 150 -m 100 -g -p 2"
         
     For performance:
-        "- i ../../../images/pat1_1000x1000.pgm -n 5000 -m 5000 -p 16"
+        "- i ../../../images/pat1_5000x5000.pgm -n 5000 -m 5000 -p 16"
 
 2) Assignment 3 - Pipesort Testing:
 
