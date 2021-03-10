@@ -47,6 +47,24 @@ To measure the GFLOPs we will use additional tests for different image sizes etc
 
 For assignments 2 and 3 make sure that you use the `-p` flag to set the number of threads. Otherwise we will test your code with a single thread. 
 
+### Assignment 2:
+Speed measurements: 
+`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -r 1 -k 10 -L 0 -H 100 -p 16`
+Additionally we will set the following environmental variables:
+- OMP_PROC_BIND=true
+- OMP_WAIT_POLICY=active
+- OMP_NUM_THREADS=XXX
+- OMP_PLACES=cores
+
+### Assignment 3:
+Speed measurements: 
+`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -r 1 -k 10 -L 0 -H 100 -p 16`
+
+### Assignment 4:
+Speed measurements: 
+`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -r 1 -k 10 -L 0 -H 100 -p 16`
+
+
 ### Measuring time 
 You'll have to measure time. If not predefined in the file please use clock_gettime(CLOCK_MONOTONIC ...) to measure the time. For explanation see here: 
 - https://www.cs.rutgers.edu/~pxk/416/notes/c-tutorials/gettime.html
