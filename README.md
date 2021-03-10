@@ -49,7 +49,7 @@ For assignments 2 and 3 make sure that you use the `-p` flag to set the number o
 
 ### Assignment 2:
 Speed measurements: 
-`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -r 1 -k 10 -L 0 -H 100 -p 16`
+`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -k 70 -L 0 -H 100 -p 16`
 Additionally we will set the following environmental variables:
 - OMP_PROC_BIND=true
 - OMP_WAIT_POLICY=active
@@ -58,11 +58,11 @@ Additionally we will set the following environmental variables:
 
 ### Assignment 3:
 Speed measurements: 
-`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -r 1 -k 10 -L 0 -H 100 -p 16`
+`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -k 70 -L 0 -H 100 -p 16`
 
 ### Assignment 4:
 Speed measurements: 
-`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -r 1 -k 10 -L 0 -H 100 -p 16`
+`./heat_seq -n 1000 -m 1000 -i 10000 -e 0.0001 -c ../../images/pat1_1000x1000.pgm -t ../../images/pat1_1000x1000.pgm -k 70 -L 0 -H 100 -p 16`
 
 
 ### Measuring time 
