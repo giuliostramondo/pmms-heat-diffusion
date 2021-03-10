@@ -4,6 +4,8 @@
 #include <string.h>
 #include <iostream>
 #include "timer.h"
+#include <unistd.h>
+#include <getopt.h>
 
 using namespace std;
 
@@ -17,6 +19,52 @@ using namespace std;
 
    checkCudaCall(cudaGetLastError());
 */
+void die(const char *msg){
+    if (errno != 0) 
+        perror(msg);
+    else
+        fprintf(stderr, "error: %s\n", msg);
+    exit(1);
+}   
+
+void generate_image(int num_rows, int num_cols, unsigned char * image){
+    for (int i = 0; i < num_cols * num_rows; ++i)
+    {
+        image[i] = (unsigned char) (rand() % 256); //255 + 1 for num bins
+    }
+}
+
+void read_image(const char * image_path, int num_rows, int num_cols, unsigned char * image){
+	char format[3];
+    FILE *f;
+    unsigned imgw, imgh, maxv, v;
+    size_t i;
+
+	printf("Reading PGM data from %s...\n", image_path);
+
+	if (!(f = fopen(image_path, "r"))) die("fopen");
+
+	fscanf(f, "%2s", format);
+    if (format[0] != 'P' || format[1] != '2') die("only ASCII PGM input is supported");
+    
+    if (fscanf(f, "%u", &imgw) != 1 ||
+        fscanf(f, "%u", &imgh) != 1 ||
+        fscanf(f, "%u", &maxv) != 1) die("invalid input");
+
+    if (imgw != num_cols || imgh != num_rows) {
+        fprintf(stderr, "input data size (%ux%u) does not match cylinder size (%zux%zu)\n",
+                imgw, imgh, num_cols, num_rows);
+        die("invalid input");
+    }
+
+    for (i = 0; i < num_cols * num_rows; ++i)
+    {
+        if (fscanf(f, "%u", &v) != 1) die("invalid data");
+        image[i] = (unsigned char) (((int)v * 255) / maxv); //255 for num bins
+    }
+    fclose(f);
+}
+
 static void checkCudaCall(cudaError_t result) {
     if (result != cudaSuccess) {
         cerr << "cuda error: " << cudaGetErrorString(result) << endl;
@@ -95,25 +143,59 @@ void histogramSeq(unsigned char* image, long img_size, unsigned int* histogram, 
 }
 
 int main(int argc, char* argv[]) {
-    long img_size = 655360;
-    int hist_size = 256;
-    
-    if (argc > 1) img_size = atoi(argv[1]);
-    if (img_size < 1024) {
-	cout << "Error in parameter" << endl;
-	exit(-1);
+    int c;
+    int seed = 42;
+    const char *image_path = 0;
+    image_path ="../../images/pat1_100x150.pgm";
+    int gen_image = 0;
+    int debug = 0;
+
+    int num_rows = 150;
+    int num_cols = 100;
+
+    /* Read command-line options. */
+    while((c = getopt(argc, argv, "s:i:rp:n:m:g")) != -1) {
+        switch(c) {
+            case 's':
+                seed = atoi(optarg);
+                break;
+            case 'i':
+            	image_path = optarg;
+            	break;
+            case 'r':
+            	gen_image = 1;
+            	break;
+            case 'n':
+            	num_rows = strtol(optarg, 0, 10);
+            	break;
+            case 'm':
+				num_cols = strtol(optarg, 0, 10);
+				break;
+			case 'g':
+				debug = 1;
+				break;
+            case '?':
+                fprintf(stderr, "Unknown option character '\\x%x'.\n", optopt);
+                return -1;
+            default:
+                return -1;
+        }
     }
+
+    int hist_size = 256;
+    long img_size = num_rows*num_cols;
 
     unsigned char *image = (unsigned char *)malloc(img_size * sizeof(unsigned char)); 
     unsigned int *histogramS = (unsigned int *)malloc(hist_size * sizeof(unsigned int));     
     unsigned int *histogram = (unsigned int *)malloc(hist_size * sizeof(unsigned int));
 
-    // initialize the vectors.
-    for(long i=0; i<img_size; i++) {
-        image[i] = (unsigned char) (i % hist_size);
+    /* Seed such that we can always reproduce the same random vector */
+    if (gen_image){
+    	srand(seed);
+    	generate_image(num_rows, num_cols, image);
+    }else{
+    	read_image(image_path,num_rows, num_cols, image);
     }
-
-    cout << "Compute the histogram of a gray image with " << img_size << " pixels." << endl;
 
     histogramSeq(image, img_size, histogramS, hist_size);
     histogramCuda(image, img_size, histogram, hist_size);
