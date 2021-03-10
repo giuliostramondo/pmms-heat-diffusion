@@ -153,9 +153,6 @@ int main(int argc, char* argv[]) {
     int num_rows = 150;
     int num_cols = 100;
 
-
-
-
     /* Read command-line options. */
     while((c = getopt(argc, argv, "s:i:rp:n:m:g")) != -1) {
         switch(c) {
@@ -188,9 +185,6 @@ int main(int argc, char* argv[]) {
     int hist_size = 256;
     long img_size = num_rows*num_cols;
 
-    //int * histogram = (int *) calloc(256, sizeof(int));
-    //int * histogramS = (int *) calloc(256, sizeof(int));
-    //int * image = (int *) malloc(sizeof(int) * num_cols * num_rows);
     unsigned char *image = (unsigned char *)malloc(img_size * sizeof(unsigned char)); 
     unsigned int *histogramS = (unsigned int *)malloc(hist_size * sizeof(unsigned int));     
     unsigned int *histogram = (unsigned int *)malloc(hist_size * sizeof(unsigned int));
@@ -202,7 +196,6 @@ int main(int argc, char* argv[]) {
     }else{
     	read_image(image_path,num_rows, num_cols, image);
     }
-
 
     histogramSeq(image, img_size, histogramS, hist_size);
     histogramCuda(image, img_size, histogram, hist_size);
